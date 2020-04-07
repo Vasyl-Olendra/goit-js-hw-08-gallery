@@ -2,6 +2,7 @@ import items from '../gallery-items.js';
 
 const galleryContainerRef = document.querySelector('.js-gallery');
 const lightboxContainerRef = document.querySelector('.js-lightbox');
+const lightboxOverlay = document.querySelector('.lightbox__content');
 const lightboxImgRef = document.querySelector('.lightbox__image');
 const buttonRef = document.querySelector('button[data-action="close-lightbox"]',);
 
@@ -31,7 +32,8 @@ const itemList = items.map(item => createItemCard(item));
 galleryContainerRef.append(...itemList);
 
 galleryContainerRef.addEventListener('click', openModal);
-galleryContainerRef.addEventListener('click', closeModal);
+buttonRef.addEventListener('click', closeModal);
+lightboxOverlay.addEventListener('click', clickOnOverlay);
 
 function openModal(event) {
   event.preventDefault();
@@ -56,7 +58,6 @@ function escClick(event) {
 }
 
 function showBigFoto(url, description) {
-  debugger;
   lightboxImgRef.src = url;
   lightboxImgRef.alt = description;
 }
